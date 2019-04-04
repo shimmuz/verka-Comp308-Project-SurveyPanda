@@ -19,18 +19,18 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { title: 'Home' } },
-  { path: 'about', component: AboutComponent, data: { title: 'About' } },
+  { path: 'about', component: AboutComponent, data: { title: 'About Me' } },
   {
     path: 'projects',
     component: ProjectsComponent,
-    data: { title: 'Projects' }
+    data: { title: 'My Projects' }
   },
   {
     path: 'services',
     component: ServicesComponent,
-    data: { title: 'Services' }
+    data: { title: 'Services Provided' }
   },
-  { path: 'contact', component: ContactComponent, data: { title: 'Contact' } },
+  { path: 'contact', component: ContactComponent, data: { title: 'Contact Me' } },
 
   {
     path: 'contact/contact-list',
