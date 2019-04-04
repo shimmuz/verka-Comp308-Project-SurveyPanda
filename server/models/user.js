@@ -1,3 +1,8 @@
+
+/*FIle name: user.js
+Name : Shefali Sharma
+Id:  300973745
+Date :April 03, 2019*/
 // require modules for our User Model
 let mongoose = require("mongoose");
 let passportLocalMongoose = require("passport-local-mongoose");
