@@ -23,9 +23,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+<<<<<<< HEAD
 @angular/animations
 MIT
 
+=======
+>>>>>>> 46f67e14eee9bf111acb2ef1bf513a83ff415dec
 @angular/common
 MIT
 
@@ -35,6 +38,7 @@ MIT
 @angular/forms
 MIT
 
+<<<<<<< HEAD
 @angular/material
 MIT
 The MIT License
@@ -60,6 +64,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+=======
+>>>>>>> 46f67e14eee9bf111acb2ef1bf513a83ff415dec
 @angular/platform-browser
 MIT
 
@@ -128,6 +134,7 @@ Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
 
+<<<<<<< HEAD
 @mdi/font
 OFL-1.1
 Copyright (c) 2014, Austin Andrews (http://materialdesignicons.com/),
@@ -228,6 +235,8 @@ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
+=======
+>>>>>>> 46f67e14eee9bf111acb2ef1bf513a83ff415dec
 angular2-flash-messages
 MIT
 
@@ -280,6 +289,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+<<<<<<< HEAD
 materialize-css
 MIT
 The MIT License (MIT)
@@ -333,6 +343,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+=======
+>>>>>>> 46f67e14eee9bf111acb2ef1bf513a83ff415dec
 punycode
 MIT
 Copyright Mathias Bynens <https://mathiasbynens.be/>
