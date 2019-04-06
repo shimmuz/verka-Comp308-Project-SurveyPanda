@@ -1,4 +1,83 @@
 <main class="container">
+  <mz-card class="darken-1 black-text" [hoverable]="true">
+
+    <mz-card-image>
+      <img src="../../../assets/images/loginim.jpg" style="height: 400px;" />
+    </mz-card-image>
+    <mz-card-image-title>
+      Please Register
+    </mz-card-image-title>
+    <mz-card-content>
+      <div class="row">
+        <form autocomplete="off" (submit)="onRegisterSubmit()" class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <!-- <fieldset class="form-group"> -->
+              <i class="material-icons prefix">account_circle</i>
+              <input type="text" class="form-control" [(ngModel)]="user.username" name="username" id="username"
+                autocomplete="off" class="validate">
+              <label for="username">User Name</label>
+              <!-- </fieldset> -->
+            </div>
+
+            <div class="input-field col s6">
+              <!-- <fieldset class="form-group"> -->
+              <i class="material-icons prefix">lock</i>
+              <input type="password" class="form-control" [(ngModel)]="user.password" name="password" id="password"
+                required autocomplete="off" class="validate">
+              <label for="password">Password</label>
+              <!-- </fieldset> -->
+            </div>
+
+
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <!-- <fieldset class="form-group"> -->
+              <i class="material-icons prefix">email</i>
+              <input type="email" class="form-control" [(ngModel)]="user.email" name="email" id="email" required
+                autocomplete="off" class="validate">
+              <label for="email">Email</label>
+              <!-- </fieldset> -->
+            </div>
+
+            <div class="input-field col s6">
+              <!-- <fieldset class="form-group"> -->
+              <i class="material-icons prefix">short_text</i>
+              <input type="text" class="form-control" [(ngModel)]="user.displayName" name="displayName" id="displayName"
+                required autocomplete="off" class="validate">
+              <label for="displayName">Display Name</label>
+              <!-- </fieldset> -->
+            </div>
+
+          </div>
+
+
+        </form>
+      </div>
+    </mz-card-content>
+    <mz-card-action>
+      <form autocomplete="off" (submit)="onRegisterSubmit()">
+        <fieldset class="form-group">
+          <button mz-button>
+            Register
+          </button>
+          <!-- <input type="submit" class="btn btn-success" value="Login"> -->
+          &nbsp; &nbsp; &nbsp; &nbsp;
+          <a routerLink="/home">
+            <button mz-button>
+              Cancel
+            </button>
+            <!--  <input type="button" class="btn btn-warning" value="Cancel"> -->
+          </a>
+        </fieldset>
+      </form>
+    </mz-card-action>
+  </mz-card>
+</main>
+
+
+<!-- <main class="container">
   <div class="row">
       <div class="col-md-offset-4 col-md-4">
           <h1>Please Register</h1>
@@ -9,7 +88,7 @@
                   [(ngModel)]="user.username"
                   name="username" placeholder="Enter Username"
                   id="username" required autocomplete="off">
-              </fieldset>
+              <  /fieldset>
               <fieldset class="form-group">
                   <label for="password">Password:</label>
                   <input type="password" class="form-control"
@@ -37,7 +116,4 @@
                       <input type="button" class="btn btn-warning" value="Cancel">
                   </a>
               </fieldset>
-          </form>
-      </div>
-  </div>
-</main>
+ -->

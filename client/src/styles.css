@@ -55,9 +55,9 @@ h3 {
 /* to format container */
 
 .container {
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #f2f2f2;
-  padding: 10px;
+  padding: 5px;
 }
 
 /* to format panel */
@@ -81,7 +81,8 @@ h3 {
   text-align: center;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
