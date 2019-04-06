@@ -1,26 +1,39 @@
 <app-base-page></app-base-page>
-<div class="container">
+<div class="container" *ngIf="!isLoggedIn()">
       <mz-card
-  class="darken-1 black-text"  
+  class="darken-1 black-text"
   [hoverable]="true">
   <mz-card-image>
-    <img src="../../../assets/images/reg.gif" />    
-  </mz-card-image>  
+    <img src="../../../assets/images/reg.gif" />
+  </mz-card-image>
   <mz-card-action class="center-align">
-   Don't have an account? Click <a routerLink="/register"> here</a>to register..        
+   Don't have an account? Click <a routerLink="/register"> here</a>to register..
   </mz-card-action>
 </mz-card>
 </div>
 
-<div class= "container">
+<div class= "container" *ngIf="!isLoggedIn()" >
  <mz-card
-  class="darken-1 black-text"  
+  class="darken-1 black-text"
   [hoverable]="true">
   <mz-card-image>
        <img src="../../../assets/images/crtsur.gif" />
-  </mz-card-image>  
+  </mz-card-image>
   <mz-card-action class="center-align">
-   Click <a routerLink="/"> here</a>to create a survey..        
+   Click <a routerLink="/login"> here</a>to create a survey..
   </mz-card-action>
 </mz-card>
 </div>
+
+<div class= "container" *ngIf="isLoggedIn()" >
+  <mz-card
+   class="darken-1 black-text"
+   [hoverable]="true">
+   <mz-card-image>
+        <img src="../../../assets/images/crtsur.gif" />
+   </mz-card-image>
+   <mz-card-action class="center-align">
+    Click <a routerLink="/"> here</a>to create a survey..
+   </mz-card-action>
+ </mz-card>
+ </div>
