@@ -1,3 +1,5 @@
+import { AddquesComponent } from './questions/addques/addques.component';
+import { CreateSurveyComponent } from './pages/create-survey/create-survey.component';
 // Modules
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,19 +17,26 @@ import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   {
-    path: 'home', component: HomeComponent, data: {title: 'Home'}
+    path: 'home',
+    component: HomeComponent,
+    data: { title: 'Home' }
   },
   {
-    path: 'contact/contact-list',
-    component: ContactListComponent,
-    data: { title: 'Contact List' },
-    canActivate: [AuthGuard]
+    path: 'create-survey',
+    component: CreateSurveyComponent,
+    data: { title: 'Create Survey' }
   },
   {
-    path: 'contact/contact-list/add',
-    component: ContactDetailsComponent,
-    data: { title: 'Add Contact' },
-    canActivate: [AuthGuard]
+    path: 'questions/addques',
+    component: AddquesComponent,
+    data: { title: 'Add Question' }
+    // canActivate: [AuthGuard]
+  },
+  {
+    path: 'questions/addques/add',
+    component: AddquesComponent,
+    data: { title: 'Add Questions' }
+    // canActivate: [AuthGuard]
   },
   {
     path: 'contact/contact-list/edit/:id',
