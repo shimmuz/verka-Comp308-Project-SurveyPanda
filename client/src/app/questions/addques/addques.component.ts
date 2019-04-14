@@ -30,7 +30,7 @@ export class AddquesComponent implements OnInit {
   }
 
   displayQuestions(): void{
-    this.createSurveyService.getQuestion().subscribe(data => {
+    this.createSurveyService.getList().subscribe(data => {
       if (data.success) {
         this.ques = data.questions;
       } else {

@@ -29,20 +29,20 @@ const routes: Routes = [
   {
     path: 'questions/addques',
     component: AddquesComponent,
-    data: { title: 'Add Question' }
+    data: { title: 'Question' }
     // canActivate: [AuthGuard]
   },
   {
     path: 'questions/addques/add',
     component: AddquesComponent,
-    data: { title: 'Add Questions' }
+    data: { title: 'Add Question' }
     // canActivate: [AuthGuard]
   },
   {
-    path: 'contact/contact-list/edit/:id',
-    component: ContactDetailsComponent,
-    data: { title: 'Edit Contact' },
-    canActivate: [AuthGuard]
+    path: 'questions/addques/edit/:id',
+    component: AddquesComponent,
+    data: { title: 'Edit Question' }
+    // canActivate: [AuthGuard]
   },
   {
     path: 'contact/contact-list/delete/:id',

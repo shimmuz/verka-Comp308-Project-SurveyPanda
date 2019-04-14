@@ -23,8 +23,17 @@ export class CreateSurveyService {
 
   constructor(private http: HttpClient) {}
 
-  public getQuestion(): Observable<any>{
+  public getList(): Observable<any> {
+    // this.loadToken();
     return this.http.get<any>(this.endpoint, this.httpOptions);
+  }
+
+  public getQuestion(question: Questions): Observable<any>{
+    return this.http.get<any>(this.endpoint + 'edit/' + question.id, this.httpOptions);
+}
+public addQuestion(question: Questions): Observable<any> {
+  // this.loadToken();
+  return this.http.post<any>(this.endpoint + 'add', question, this.httpOptions);
 }
 
   // creates and adds answer
