@@ -29,7 +29,7 @@ module.exports.ReadSurveyList = (req, res) => {
             return console.error(err);
         } else {
             res.render('surveys/index', {
-                title: 'Survey List',
+                title: 'Survey Response',
                 surveys: surveys,
                 displayName: req.user ? req.user.displayName : ''
             })
