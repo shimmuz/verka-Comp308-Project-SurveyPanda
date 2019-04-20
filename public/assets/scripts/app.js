@@ -30,7 +30,7 @@ $(function () {
   $("#datetimepicker2").on("dp.change", function (e) {
     $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
   });
-})();
+});
 
 
 //get local time zone offset to timezone input value
