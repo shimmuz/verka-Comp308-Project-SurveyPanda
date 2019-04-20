@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// FIle name: server.js
+ // FIle name: server.js
 // Name : Shefali Sharma
 // Id:  300973745
 // Date :April 03, 2019*/
@@ -7,7 +7,7 @@
  * Module dependencies.
  */
 
-let app = require('./server/config/app');
+let app = require('./server/config/app.js');
 let debug = require('debug')('comp308-w2019-lesson3b:server');
 let http = require('http');
 
@@ -61,9 +61,9 @@ function onError(error) {
     throw error;
   }
 
-  let bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  let bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -86,8 +86,8 @@ function onError(error) {
 
 function onListening() {
   let addr = server.address();
-  let bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  let bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
   debug('Listening on ' + bind);
 }

@@ -1,0 +1,110 @@
+<% include ../partials/header.ejs %>
+<div style=" size:cover; background-size:cover;background-image:url('../../../assets/images/bg2.jpg');
+  background-repeat:no-repeat; width:100%; height:400px; background-attachment:fixed;">
+</div>
+
+<main class="container">
+  <div class="card hoverable">
+    <form class="form" method="post" onsubmit="timeChange()">
+      <div class="card-content center-align">
+        <h1> <i class="material-icons medium vertical-align-middle padding-bottom-3">loupe</i> <%= title %>
+        </h1>
+      </div>
+      <div class="card-content">
+        <div>
+          <div class="form-group">
+            <div class="container">
+              <!--hidden input to capture numberOfQuestion and question type and timezone offset-->
+              <input type="hidden" class="form-control" id="NameTextField" placeholder="Survey Topic"
+                name="numberOfQuestion" value="<%= numberOfQuestion %>" required>
+              <input type="hidden" class="form-control" id="NameTextField" placeholder="Question Type" name="type"
+                value="<%= type %>" required>
+              <input type="hidden" class="form-control" id="timezone" placeholder="Local Time zone offset"
+                name="timeOffset" value="" required>
+
+              <!-- ==================================================================================================== -->
+
+              <div class="input-field col m6">
+                <i class="material-icons prefix">insert_chart</i>
+                <input id="NameTextField" name="topic" type="text" value="<%= topic%>" class="form-control" required>
+
+              </div>
+
+              <div class="input-field col m6">
+                <i class="material-icons prefix">event_available</i>
+                <input type="text" placeholder="Select Start Date" id="startTime" name="startDate"
+                  class="datepicker form-control" id="datetimepicker1" required>
+              </div>
+
+              <div class="input-field col m6">
+                <i class="material-icons prefix">event_busy</i>
+                <input type="text" placeholder="Select End Date" id="endTime" name="expireDate"
+                  class="datepicker form-control" id="datetimepicker2" required>
+              </div>
+              <div class="container">
+                <% for (let count = 1; count <= numberOfQuestion; count++) { %>
+
+                <div class="input-field col m6">
+                  <i class="material-icons prefix">poll</i>
+                  <input id="total" type="text" class="form-control" name="questionTopic<%= count%>" required>
+                  <label for="total">Question <%= count%></label>
+                </div>
+                <% if(type == 1 || type == 2) { %>
+                <div class="input-field col m6">
+                  <i class="material-icons prefix">filter_1</i>
+                  <input id="total" type="text" class="form-control" name="questionAns<%= count%>1" required>
+                  <label for="total">Option 1</label>
+                </div>
+
+                <div class="input-field col m6">
+                  <i class="material-icons prefix">filter_2</i>
+                  <input id="total" type="text" class="form-control" name="questionAns<%= count%>2" required>
+                  <label for="total">Option 2</label>
+                </div>
+
+                <div class="input-field col m6">
+                  <i class="material-icons prefix">filter_3</i>
+                  <input id="total" type="text" class="form-control" name="questionAns<%= count%>3" required>
+                  <label for="total">Option 3</label>
+                </div>
+
+                <!-- <div class="input-field col m6">
+                  <i class="material-icons prefix">filter_4</i>
+                  <input id="total" type="text" class="form-control" name="questionAns<%= count%>4" required>
+                  <label for="total">Option 4</label>
+                </div> -->
+
+                <hr>
+                <% } %>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group ">
+            <div class="col m6 right-align">
+              <button class="btn waves-effect waves-light green btn-small" type="submit" value="Log In">Submit</button>
+            </div>
+            <div class="col m2 ">
+              <a href="/" class="waves-effect waves-light btn red btn-small">Cancel</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </form>
+  </div>
+  </div>
+</main>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+    var instances = M.AutoInit();
+  });
+</script>
+
+
+
+<% include ../partials/footer.ejs %>

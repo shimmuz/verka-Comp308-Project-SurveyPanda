@@ -1,97 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title><%= title %></title>
-    <!-- CSS Section-->
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css" />
-    <link rel="stylesheet" href="/Content/app.css" />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">COMP308</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <% if(title == "Home") { %>
-          <li class="nav-item active"><% } else { %></li>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+  <!-- CSS SECTION -->
+  <link rel="stylesheet" href="/Scripts/lib/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/Scripts/lib/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/Scripts/lib/font-awesome/css/font-awesome.min.css">
+  <link rel='stylesheet' href='/Content/app.css' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <link
+    href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css"
+    rel="stylesheet">
+</head>
 
-          <li class="nav-item">
-            <% } %>
+<body>
+  <div id="navbar">
+    <a href="/" id="logo">Survey Panda</a>
+    <div id="navbar-right">
+      <% if(title == "Home") { %>
+      <a href="/" class="active">
+        <i class="material-icons vertical-align-middle padding-bottom-3">home</i> Home
+      </a>
+      <% } else { %>
+      <a href="/"> <i class="material-icons vertical-align-middle padding-bottom-3">home</i> Home</a>
+      <% } %>
+      <% if(typeof displayName == 'string' && displayName) { %>
+      <% if(title == "My Surveys List") { %>
+      <a href="/surveys/mySurveys" class="active">
+        <i class="material-icons vertical-align-middle padding-bottom-3">speaker_notes</i> Survey List
+      </a>
+      <% } else { %>
+      <a href="/surveys/mySurveys">
+        <i class="material-icons vertical-align-middle padding-bottom-3">speaker_notes</i> Survey List</a>
+      <% } %>
+      <% } %>
 
-            <a class="nav-link" href="/"
-              ><i class="fas fa-lg fa-igloo"></i> Home
-              <span class="sr-only">(current)</span></a
-            >
-          </li>
+      <% if(typeof displayName == 'string' && displayName) { %>
+      <% if(title == "Create Survey") { %>
+      <a href="/surveys/initial" class="active">
+        <i class="material-icons vertical-align-middle padding-bottom-3">playlist_add</i> Create
+      </a>
+      <% } else { %>
+      <a href="/surveys/initial">
+        <i class="material-icons vertical-align-middle padding-bottom-3">playlist_add</i> Create</a>
+      <% } %>
+      <% } %>
 
-          <% if(title == "About") { %>
-          <li class="nav-item active"><% } else { %></li>
+      <% if(title == "Surveys List") { %>
+      <a href="/surveys" class="active">
+        <i class="material-icons vertical-align-middle padding-bottom-3">question_answer</i> Respond
+      </a>
+      <% } else { %>
+      <a href="/surveys">
+        <i class="material-icons vertical-align-middle padding-bottom-3">question_answer</i> Respond</a>
+      <% } %>
 
-          <li class="nav-item">
-            <% } %>
+      <% if(typeof displayName == 'string' && displayName) { %>
+      <% if(title == "User Profile") { %>
+      <a href="../users/profile" class="active">
+        <i class="material-icons vertical-align-middle padding-bottom-3">local_library</i> Welcome,
+        <%= displayName %></a>
+      <% } else { %>
+      <a href="../users/profile">
+        <i class="material-icons vertical-align-middle padding-bottom-3">local_library</i> Welcome,
+        <%= displayName %></a>
+      <% } %>
+      <a href="/users/logout">
+        <i class="material-icons vertical-align-middle padding-bottom-3">error</i> Logout</a>
+      <% } else { %>
+      <% if(title == "Login") { %>
+      <a href="/users/login" class="active">
+        <i class="material-icons vertical-align-middle padding-bottom-3">launch</i> Login</a>
 
-            <a class="nav-link" href="/about"
-              ><i class="fa fa-lg fa-info"></i> About</a
-            >
-          </li>
+      <% } else { %>
+      <a href="/users/login">
+        <i class="material-icons vertical-align-middle padding-bottom-3">launch</i> Login</a>
+      <% } %>
+      <% } %>
+    </div>
+  </div>
 
-          <% if(title == "Products") { %>
-          <li class="nav-item active"><% } else { %></li>
+  <script>
+    window.onscroll = function () {
+      scrollFunction()
+    };
 
-          <li class="nav-item">
-            <% } %>
-
-            <a class="nav-link" href="/products"
-              ><i class="fa fa-lg fa-briefcase"></i> Products</a
-            >
-          </li>
-
-          <% if(title == "Services") { %>
-          <li class="nav-item active"><% } else { %></li>
-
-          <li class="nav-item">
-            <% } %>
-
-            <a class="nav-link" href="/services"
-              ><i class="fa fa-lg fa-birthday-cake"></i> Services</a
-            >
-          </li>
-
-          <% if(title == "Contact") { %>
-          <li class="nav-item active"><% } else { %></li>
-
-          <li class="nav-item">
-            <% } %>
-
-            <a class="nav-link" href="/contact"
-              ><i class="fa fa-lg fa-phone"></i> Contact</a
-            >
-          </li>
-
-          <% if(typeof displayName == 'string' && displayName) { %>
-            <li class="navbar-text"><i class="fas fa-lg fa-user"></i> 
-              Welcome, <%= displayName %></li>
-            <li class="nav-item"><a href="/logout" class="nav-link">
-              <i class="fas fa-lg fa-sign-out-alt"></i> Logout</a></li>
-          <% } else { %>
-            <li class="nav-item"><a href="/login" class="nav-link">
-              <i class="fas fa-lg fa-sign-in-alt"></i> Login</a></li>
-          <% } %>
-        </ul>
-      </div>
-    </nav>
+    function scrollFunction() {
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        document.getElementById("navbar").style.padding = "10px 10px";
+        document.getElementById("logo").style.fontSize = "25px";
+      } else {
+        document.getElementById("navbar").style.padding = "50px 10px";
+        document.getElementById("logo").style.fontSize = "35px";
+      }
+    }
+  </script>

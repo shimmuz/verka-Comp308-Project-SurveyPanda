@@ -1,0 +1,41 @@
+<% include ../partials/header.ejs %>
+<div style=" size:cover; background-size:cover;background-image:url('../../../assets/images/bg2.jpg');
+  background-repeat:no-repeat; width:100%; height:400px; background-attachment:fixed;">
+</div>
+
+<main class="container">
+  <div class="row">
+    <div class="col m12 m6">
+      <div class="card hoverable">
+        <div class="card-content black-text">
+          <span class="card-title center-align">
+            <h1> <i class="material-icons vertical-align-middle padding-bottom-3 medium">content_copy</i> Survey List
+            </h1>
+          </span>
+          <main class="container">
+            <table class="responsive-table centered  striped">
+              <thead>
+                <tr>
+                  <th>Survey Topic</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let count = 0; count < surveys.length; count++) { %>
+                <tr>
+                  <td><%= surveys[count].topic %></td>
+                  <td><a href="/surveys/response/<%= surveys[count]._id %>" class="waves-effect waves-light btn green">
+                      <i class="material-icons vertical-align-middle padding-bottom-3">description</i> Response</a>
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<% include ../partials/footer.ejs %>

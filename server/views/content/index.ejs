@@ -1,0 +1,64 @@
+<% include ../partials/header.ejs %>
+
+<div style=" size:cover; background-size:cover;background-image:url('../../../assets/images/bg2.jpg');
+  background-repeat:no-repeat; width:100%; height:400px; background-attachment:fixed;">
+</div>
+
+<% if(typeof displayName == 'string' && !displayName) { %>
+<main class="container">
+  <div class="row ">
+    <div class="col m12 m7">
+      <div class="card hoverable">
+        <div class="card-image">
+          <img src="../../../assets/images/reg.gif">
+        </div>
+        <div class="card-action">
+          Don't have an account? Click <a href="/users/register"> here</a> to Register.
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</main>
+<% } %>
+
+<% if(typeof displayName == 'string' && !displayName) { %>
+<main class="container">
+  <div class="row ">
+    <div class="col m12 m7">
+      <div class="card hoverable">
+        <div class="card-image">
+          <img src="../../../assets/images/crtsur.gif">
+        </div>
+        <div class="card-action">
+          Click <a href="/users/login"> here</a> to create a Survey.
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</main>
+<% } %>
+
+<% if(typeof displayName == 'string' && displayName) { %>
+<main class="container">
+  <div class="row ">
+    <div class="col m12 m7">
+      <div class="card hoverable">
+        <div class="card-image">
+          <img src="../../../assets/images/crtsur.gif">
+        </div>
+        <div class="card-action">
+          Click <a href="/surveys/initial">here</a> to create a Survey!!!
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</main>
+<% } %>
+
+<% include ../partials/footer.ejs %>

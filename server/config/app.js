@@ -1,43 +1,35 @@
-/*FIle name: app.js
-Name : Shefali Sharma
-Id:  300973745
-Date :April 03, 2019*/
-
-// moddules for node and express
-let createError = require('http-errors');
+// modules required for the project
 let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
+let path = require('path'); // part of node.js core
+let favicon = require('serve-favicon');
 let logger = require('morgan');
-let cors = require('cors');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
 
 // modules for authentication
 let session = require('express-session');
 let passport = require('passport');
+let passportlocal = require('passport-local');
+let LocalStrategy = passportlocal.Strategy;
+let flash = require('connect-flash'); // displays errors / login messages
 
-let passportJWT = require('passport-jwt');
-let JWTStrategy = passportJWT.Strategy;
-let ExtractJWT = passportJWT.ExtractJwt;
-
-let passportLocal = require('passport-local');
-let localStrategy = passportLocal.Strategy;
-let flash = require('connect-flash');
-
-// database setup
+// import "mongoose" - required for DB Access
 let mongoose = require('mongoose');
-let DB = require('./db');
+// URI
+let config = require('./db');
 
-// point Mongoose to the DB URI
-mongoose.connect(DB.URI, { useNewUrlParser: true });
+mongoose.connect(process.env.URI || config.URI);
 
-let mongoDB = mongoose.connection;
-mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
-mongoDB.once('open', ()=> {
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
   console.log("Connected to MongoDB...");
 });
 
-let indexRouter = require('../routes/index');
-let contactRouter = require('../routes/contact');
+// define routers
+let index = require('../routes/index'); // top level routes
+let users = require('../routes/users'); // routes for users and auth
+let surveys = require('../routes/surveys'); // routes for surveys and auth
 
 
 let app = express();
@@ -46,80 +38,59 @@ let app = express();
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
+// uncomment after placing your favicon in /client
+// app.use(favicon(path.join(__dirname, '../../client', 'favicon.png')));
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../../public')));
-app.use(express.static(path.join(__dirname, '../../node_modules')));
+app.use(express.static(path.join(__dirname, '../../client')));
 
-app.use(cors());
 
-// setup express-session
+
+// setup session
 app.use(session({
   secret: "SomeSecret",
-  saveUninitialized: false,
-  resave: false
+  saveUninitialized: true,
+  resave: true
 }));
 
-// initialize flash
+// initialize passport and flash
 app.use(flash());
-
-// initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// pasport user configuration
+// route redirects
+app.use('/', index); // top level links
+app.use('/users', users); // users links - start with /users
+app.use('/surveys', surveys); // surveys links - start with /surveys
 
-// create a User model
-let userModel = require('../models/user');
-let User = userModel.User;
-
-// implement a User authetication strategy
+// Passport User Configuration
+let UserModel = require('../models/users');
+let User = UserModel.User; // alias for the User Model - User object
 passport.use(User.createStrategy());
-
-// serialize and deserialize the User info
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// this part verfies that the token is being sent by the user and is valid
-let jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
-jwtOptions.secretOrKey = DB.secret;
-
-let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
-  User.findById(jwt_payload.id)
-    .then(user => {
-      return done(null, user);
-    })
-    .catch(err => {
-      return done(err, false);
-    });
+// Handle 404 Errors
+app.use(function (req, res) {
+  res.status(400);
+  res.render('errors/404', {
+    title: '404: File Not Found'
+  });
 });
 
-passport.use(strategy);
-
-
-app.use('/api', indexRouter);
-app.use('/api/contact-list', passport.authenticate('jwt', {session: false}), contactRouter); 
-app.get('*', (req, res) => {
-  res.sendfile(path.join(__dirname, '../../public/index.html'));
+// Handle 500 Errors
+app.use(function (error, req, res, next) {
+  res.status(500);
+  res.render('errors/500', {
+    title: '500: Internal Server Error',
+    error: error
+  });
 });
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 module.exports = app;

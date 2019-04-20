@@ -1,12 +1,6 @@
-/*FIle name: db.js
-Name : Shefali Sharma
-Id:  300973745
-Date :April 03, 2019*/
-
-
 module.exports = {
-   //"URI" : "mongodb://localhost/test",
-    
-    "URI" : "mongodb://shefali:a123456@ds058548.mlab.com:58548/shefali",
-    "secret": "SomeSecret"
-}
+  //local MongoDB deployment ->
+  // "URI": "mongodb://localhost/survey"
+  "URI": "mongodb://surveypanda:a123456@ds045077.mlab.com:45077/final-survey-panda"
+
+};

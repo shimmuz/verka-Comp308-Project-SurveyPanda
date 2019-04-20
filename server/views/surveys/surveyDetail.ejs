@@ -1,0 +1,78 @@
+<% include ../partials/header.ejs %>
+
+<div style=" size:cover; background-size:cover;background-image:url('../../../assets/images/bg2.jpg');
+  background-repeat:no-repeat; width:100%; height:400px; background-attachment:fixed;">
+</div>
+
+<main class="container">
+
+   <div class="row">
+      <div class="col m12 m6">
+         <div class="card hoverable">
+            <div class="card-content black-text">
+               <span class="card-title center-align">
+                  <h1> <i class="material-icons medium vertical-align-middle padding-bottom-3">content_paste</i>
+                     <%= title %></h1>
+               </span>
+               <form class="form" method="post">
+                  <!-- hidden properties to get data -->
+                  <input type="hidden" class="form-control" id="NameTextField" placeholder="Survey Topic"
+                     name="surveyTopic" value="<%= title %>" required>
+                  <input type="hidden" class="form-control" id="NameTextField" placeholder="User ID" name="userId"
+                     value="<%= user %>" required>
+                  <input type="hidden" class="form-control" id="NameTextField" placeholder="Questions"
+                     name="numberofQuestions" value="<%= surveys.questions.length %>" required>
+                  <input type="hidden" class="form-control" id="NameTextField" placeholder="Question Type" name="type"
+                     value="<%= type %>" required>
+
+                  <!-- ======================================================================================================================================= -->
+                  <% for (let count = 0; count < surveys.questions.length; count++) { %>
+                  <fieldset class="form-group center-align">
+                     <input type="hidden" class="form-control" id="NameTextField" placeholder="Question Topic"
+                        name="questionTopic<%=count%>" value="<%= surveys.questions[count].questionTopic %>" required>
+                     <h5><%= surveys.questions[count].questionTopic %></h5>
+                     <% if(type == 1 || type == 2) { %>
+                     <% for (let i = 0; i<surveys.questions[count].questionAns.length; i++) { %>
+                     <div class="form-check">
+                        <label>
+                           <% if (surveys.questions[count].questionAns[i].answer != "") { %>
+                           <input class="with-gap" name="question<%=count%>" type="radio"
+                              value="<%= surveys.questions[count].questionAns[i].answer %>" />
+                           <span><%= surveys.questions[count].questionAns[i].answer %></span>
+                           <% } else { %>
+                           <input class="with-gap" name="question<%=count%>" type="radio"
+                              value="<%= surveys.questions[count].questionAns[i].answer %>" />
+                           <span><%= surveys.questions[count].questionAns[i].answer %></span>
+                           <% }  %>
+                        </label>
+                     </div>
+                     <br>
+                     <% } %>
+                     <% } else if (type==3) {%>
+                     <main class="container">
+                        <div class="form-group">
+                           <div class="row">
+                              <form class="col m12">
+                                 <div class="row">
+                                    <div class="input-field col m12">
+                                       <textarea id="Textarea" class="materialize-textarea form-control" rows="3"
+                                          name="question<%=count%>"></textarea>
+                                       <label for="Textarea">Your Answer</label>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </main>
+                     <% } %>
+                     <% } %>
+                     <a href="/surveys/mySurveys" class="waves-effect waves-light btn"> <i
+                           class="material-icons prefix vertical-align-middle padding-bottom-3">arrow_back</i> Back</a>
+                  </fieldset>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</main>
+<% include ../partials/footer.ejs %>

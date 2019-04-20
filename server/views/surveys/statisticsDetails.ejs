@@ -1,0 +1,118 @@
+<% include ../partials/header.ejs %>
+<script src="/Scripts/Chart.min.js"></script>
+
+<div style=" size:cover; background-size:cover;background-image:url('../../../assets/images/bg2.jpg');
+  background-repeat:no-repeat; width:100%; height:400px; background-attachment:fixed;">
+</div>
+<main class="container">
+  <div class="row">
+    <div class="col m12 m6">
+      <div class="card hoverable">
+        <div class="card-content black-text">
+          <span class="card-title center-align">
+            <h1> <i class="material-icons vertical-align-middle padding-bottom-3 medium">equalizer</i>Statistics</h1>
+          </span>
+          <table class="striped centered responsive-table">
+            <thead>
+              <tr>
+                <th class="text-center">Question</th>
+
+                <th class="text-center">Ans1</th>
+                <th class="text-center">count</th>
+
+                <th class="text-center">Ans2</th>
+                <th class="text-center">count</th>
+
+                <th class="text-center">Ans3</th>
+                <th class="text-center">count</th>
+
+                <th class="text-center">Total</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% for (let count = 0; count < Object.keys(result).length; count++) 
+              {  
+                var keys = Object.keys(result); 
+                var quest = result[keys[count]];
+                var keys_ = Object.keys(quest);
+                %>
+              <tr>
+                <td><%= quest['topic'] %></td>
+
+                <td><%= keys_[3] %></td>
+                <td><%= quest[keys_[3]] %></td>
+
+                <td><%= keys_[4] %></td>
+                <td><%= quest[keys_[4]] %></td>
+
+                <td><%= keys_[5] %></td>
+                <td><%= quest[keys_[5]] %></td>
+
+                <td><%= quest['total'] %></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<main class="container">
+  <div class="row">
+    <div class="col m6 offset-m3">
+      <div class="card hoverable">
+        <div class="card-content black-text">
+          <span class="card-title center-align"><a href="/surveys/excel/<%= surveyID %>"
+              class="waves-effect waves-light btn"> <i
+                class="material-icons vertical-align-middle padding-bottom-3">file_download</i>EXPORT</a>
+          </span>
+          <% for (let count = 0; count < Object.keys(result).length; count++) {  
+            var keys = Object.keys(result); 
+            var quest = result[keys[count]];
+            var keys_ = Object.keys(quest); %>
+          <canvas id="myChart<%= count%>" width="300" height="300"></canvas>
+          <script type="text/javascript" language="javascript">
+            let ctx<%= count%> = document.getElementById("myChart<%= count%>");
+            let myChart<%= count%> = new Chart(ctx<%= count%>, {
+              type: 'bar',
+              data: {
+                labels: ["<%= keys_[3] %>", "<%= keys_[4] %>", "<%= keys_[5] %>"],
+                datasets: [{
+                  label: "<%= quest['topic'] %>",
+                  data: [<%= quest[keys_[3]] %>, <%= quest[keys_[4]] %>, <%= quest[keys_[5]] %>],
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                  ],
+                  borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+                  ],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                  }]
+                }
+              }
+            });
+          </script>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+
+<% include ../partials/footer.ejs %>
