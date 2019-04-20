@@ -46,7 +46,9 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../../client')));
+// app.use(express.static(path.join(__dirname, '../../client')));
+app.use(express.static(path.join(__dirname, '../assets/images')));
+app.use(express.static(path.join(__dirname, '../assets/scripts')));
 
 
 
