@@ -25,15 +25,18 @@
               <tbody>
                 <% for (let count = 0; count < surveys.length; count++) { %>
                 <tr>
-                  <td><%= surveys[count].topic %></td>
+                  <td><%= surveys[count].topic %> </td>
                   <td><a href="/surveys/view/<%= surveys[count]._id %>" class="waves-effect waves-light btn green"> <i
                         class="material-icons vertical-align-middle padding-bottom-3">description</i> View</a>
                   </td>
                   <td><a href="/surveys/delete/<%= surveys[count]._id %>" class="waves-effect waves-light btn red"><i
                         class="material-icons vertical-align-middle padding-bottom-3">delete_forever</i> Delete</a></td>
-                  <td><a href="/surveys/statistics/<%= surveys[count]._id %>"
-                      class="waves-effect waves-light btn orange"> <i
-                        class="material-icons vertical-align-middle padding-bottom-3">dehaze</i> Statistics</a></td>
+                  <td>
+                    <% if (surveys[count].type == 2) { %>
+                    <a href="/surveys/statistics/<%= surveys[count]._id %>" class="waves-effect waves-light btn orange">
+                      <i class="material-icons vertical-align-middle padding-bottom-3">dehaze</i> Statistics</a>
+                    <% } %>
+                  </td>
                 </tr>
                 <% } %>
               </tbody>
